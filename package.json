@@ -1,0 +1,28 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "my first todo list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidoff0895/todo.git"
+  },
+  "author": "davydov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidoff0895/todo/issues"
+  },
+  "homepage": "https://github.com/davidoff0895/todo#readme",
+  "devDependencies": {
+    "browser-sync": "2.23.6",
+    "del": "3.0.0",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "4.1.0",
+    "gulp-cssnano": "2.1.2",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "3.1.0"
+  }
+}

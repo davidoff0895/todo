@@ -6,11 +6,41 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>ToDo</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <link rel="stylesheet" href="css/main.css">
+  <!--<script type="text/javascript" src="js/common.js"/>-->
 </head>
 <body>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, error eveniet fuga illum magni quia ratione sint vero.
-  Ducimus nam pariatur provident reprehenderit sapiente. Ab excepturi modi repellat similique voluptatem.</p>
-  <script src="js/common.js"/>
+  <div class="app grid">
+    <div class="content grid">
+      <div class="grid input-group" style="text-align: left;">
+        <input class="add" type="text" placeholder="Add task...">
+        <button class="btn" onclick="test()">Add</button>
+      </div>
+      <div>
+        <ul class="nav">
+          <li class="item active">During</li>
+          <li class="item">Completed</li>
+        </ul>
+      </div>
+      <div class="list grid">
+        <ul class="list__ul">
+          <li class="list__elem">
+            <span>Buy milk</span>
+            <div class="actions">
+              <i class="icon check far fa-check-circle"></i>
+              <i class="icon trash far fa-trash-alt"></i>
+            </div>
+          </li>
+          <li class="list__elem completed">
+            <span>Buy milk</span>
+            <div class="actions">
+              <i class="revert fas fa-undo"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

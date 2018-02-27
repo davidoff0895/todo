@@ -94,6 +94,7 @@ body
   text-align: left
   margin: 0
   padding: 0
+  display: none
   .list__elem
     position: relative
     font-size: 18px
@@ -104,9 +105,11 @@ body
       cursor: pointer
       background: #e6e6e6
 
+.list__ul.default
+  display: block
+
 .completed
   text-decoration: line-through
-  display: none
 
 .actions
   position: absolute
@@ -133,3 +136,8 @@ body
 
 .revert
   color: #a6a6a6
+
+.action__btn
+  background-color: transparent
+  border: none
+  outline: none

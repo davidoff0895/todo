@@ -50,7 +50,7 @@ function renderTaskList() {
   }
 
   for (var j = 0; j < data.completed.length; j++) {
-    var completedValue = data.completed[i];
+    var completedValue = data.completed[j];
     console.log(completedValue);
     addTask(completedValue, true);
   }

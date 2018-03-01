@@ -1,3 +1,8 @@
+var data = (localStorage.getItem('taskList')) ? JSON.parse(localStorage.getItem('taskList')) : {
+  during: [],
+  completed: []
+};
+
 function openSection(evt, sectionName) {
   var tabContent, tabLinks;
   tabContent = document.getElementsByClassName("list__ul");
@@ -11,22 +16,55 @@ function openSection(evt, sectionName) {
   document.getElementById(sectionName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
 window.onload = function () {
   document.getElementById('addTask').addEventListener('click', function() {
     var value = document.getElementById('valueTask').value;
     if (value) {
       addTask(value);
       document.getElementById('valueTask').value = '';
+
+      data.during.push(value);
+      localData();
     }
   });
+
+  document.getElementById('valueTask').addEventListener('keydown', function(ev) {
+    var value = this.value;
+    if (ev.code === 'Enter' && value) {
+      addTask(value);
+      document.getElementById('valueTask').value = '';
+
+      data.during.push(value);
+      localData();
+    }
+  });
+  renderTaskList();
 }
 
-function addTask(text) {
-  var list = document.getElementById('during');
+function renderTaskList() {
+  if (!data.during.length && !data.completed.length) return;
+
+  for (var i = 0; i < data.during.length; i++) {
+    var duringValue = data.during[i];
+    addTask(duringValue);
+  }
+
+  for (var j = 0; j < data.completed.length; j++) {
+    var completedValue = data.completed[j];
+    console.log(completedValue);
+    addTask(completedValue, true);
+  }
+}
+
+function localData() {
+  localStorage.setItem('taskList', JSON.stringify(data));
+}
+
+function addTask(text, completed) {
+  var list = (completed) ? document.getElementById('completed') : document.getElementById('during');
 
   var task = document.createElement('li');
-  task.className += 'list__elem';
+  (completed) ? task.className = 'list__elem completed' : task.className = 'list__elem';
   task.innerText = text;
 
   var buttons = document.createElement('div');
@@ -58,6 +96,15 @@ function addTask(text) {
 function removeTask() {
   var task = this.parentNode.parentNode;
   var parentElem = task.parentNode;
+  var id = parentElem.id;
+  var value = task.innerText;
+  if (id === 'during') {
+    data.during.splice(data.during.indexOf(value), 1);
+  } else {
+    data.completed.splice(data.completed.indexOf(value), 1);
+  }
+  localData();
+
   parentElem.removeChild(task);
 }
 
@@ -65,6 +112,17 @@ function completeTask() {
   var task = this.parentNode.parentNode;
   var parentElem = task.parentNode;
   var id = parentElem.id;
+  var value = task.innerText;
+
+  if (id === 'during') {
+    data.during.splice(data.during.indexOf(value), 1);
+    data.completed.push(value);
+  } else {
+    data.completed.splice(data.completed.indexOf(value), 1);
+    data.during.push(value);
+  }
+  localData();
+
   if (id === 'during') {
     var list = document.getElementById('completed');
     task.className += ' completed';
